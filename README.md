@@ -102,6 +102,18 @@ local ToggleEquipLoop = Tab:CreateToggle({
 
 local SectionBuy = Tab:CreateSection("Auto Buy Plants")
 
+local ButtonBuyCactus = Tab:CreateButton({
+	Name = "Buy Cactus",
+	Description = nil,
+    	Callback = function()
+         local args = {
+         	"purchaseSeed",
+         	"Cactus"
+         }
+         game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+    	end
+}, "BuyCactus")
+
 local cactusLoopActive = false
 local ToggleAutoBuyCactus = Tab:CreateToggle({
 	Name = "Auto Buy Cactus",
@@ -123,18 +135,6 @@ local ToggleAutoBuyCactus = Tab:CreateToggle({
          end
     	end
 }, "AutoBuyCactus")
-
-local ButtonBuyCactus = Tab:CreateButton({
-	Name = "Buy Cactus",
-	Description = nil,
-    	Callback = function()
-         local args = {
-         	"purchaseSeed",
-         	"Cactus"
-         }
-         game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
-    	end
-}, "BuyCactus")
 
 local ButtonBuyStrawberry = Tab:CreateButton({
 	Name = "Buy Strawberry",
