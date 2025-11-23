@@ -112,7 +112,7 @@ local ButtonBuyCactus = Tab:CreateButton({
          }
          game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
-}, "BuyCactus")
+}, "BuyCactus_1")
 
 local cactusLoopActive = false
 local ToggleAutoBuyCactus = Tab:CreateToggle({
@@ -134,7 +134,7 @@ local ToggleAutoBuyCactus = Tab:CreateToggle({
          	end)
          end
     	end
-}, "AutoBuyCactus")
+}, "AutoBuyCactus_2")
 
 local ButtonBuyStrawberry = Tab:CreateButton({
 	Name = "Buy Strawberry",
