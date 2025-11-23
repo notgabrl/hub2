@@ -66,7 +66,7 @@ local ButtonSellAllPlants = Tab:CreateButton({
 }, "SellAllPlants")
 
 local ButtonEquipBestNPCs = Tab:CreateButton({
-	Name = "Equip Best NPCs",
+	Name = "Equip Best NPCs - Collect Money",
 	Description = nil,
     	Callback = function()
          local args = {
@@ -75,3 +75,31 @@ local ButtonEquipBestNPCs = Tab:CreateButton({
          game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("EquipBest"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
 }, "EquipBestNPCs")
+
+local equipLoopActive = false
+local equipLoopConnection = nil
+
+local ToggleEquipLoop = Tab:CreateToggle({
+	Name = "Auto Equip Best NPCs",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         equipLoopActive = Value
+         if Value then
+         	equipLoopConnection = task.spawn(function()
+         		while equipLoopActive do
+         			local args = {
+         				"equipBestNPCs"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("EquipBest"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			task.wait(5)
+         		end
+         	end)
+         else
+         	if equipLoopConnection then
+         		task.cancel(equipLoopConnection)
+         		equipLoopConnection = nil
+         	end
+         end
+    	end
+}, "AutoEquipLoop")
