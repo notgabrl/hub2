@@ -1,11 +1,11 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "idk Hub",
+   Name = "Aura Hub",
    Icon = nil, -- ou assetId válido em string
-   LoadingTitle = "idk Hub",
-   LoadingSubtitle = "by idk",
-   Theme = "Dark",
+   LoadingTitle = "Aura Hub",
+   LoadingSubtitle = "by Aura",
+   Theme = "Default",
    ToggleUIKeybind = "K",
 
    DisableRayfieldPrompts = false,
@@ -13,39 +13,37 @@ local Window = Rayfield:CreateWindow({
 
    ConfigurationSaving = {
       Enabled = true,
-      FolderName = idk hub,
-      FileName = "idk Hub"
+      FolderName = nil,
+      FileName = "Aura Hub"
    },
 
    Discord = {
-      Enabled = false,
-      Invite = "noinvitelink",
-      RememberJoins = false
+      Enabled = true,
+      Invite = "JF2F2RANud",
+      RememberJoins = true
    },
 
-   KeySystem = false,
+   KeySystem = true,
    KeySettings = {
-      Title = "idk Keys",
+      Title = "Aura Keys",
       Subtitle = "Key System",
-      Note = "Para conseguir a key, entre no discord da idk",
+      Note = "Para conseguir a key, entre no discord da Aura",
       FileName = "Key",
       SaveKey = true,
       GrabKeyFromSite = false,
-      Key = {"idk""}
+      Key = {"Aura", "Ore", "AuraHub"}
    }
 })
 
-local idkHub = Window:CreateTab("idk Hub", 4483362458)
+local AuraHub = Window:CreateTab("Aura Hub", 4483362458)
 local Farm = Window:CreateTab("Farm", 4483362458)
 
-local SectionMain = idkHub:CreateSection("Funções Principais")
+local SectionMain = AuraHub:CreateSection("Funções Principais")
 
-local function Equipar melhores personagens de anime()
-   local args = {
-      "equipBestNPCs"
-   }
-   game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("EquipBest"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
-   
+local function MatarJogador()
+   local player = game.Players.LocalPlayer
+   if player and player.Character and player.Character:FindFirstChild("Humanoid") then
+      player.Character.Humanoid.Health = 0
    end
 end
 
@@ -54,7 +52,7 @@ local ButtonKill = Farm:CreateButton({
    Callback = MatarJogador
 })
 
-local ToggleFlash = idkHub:CreateToggle({
+local ToggleFlash = AuraHub:CreateToggle({
    Name = "Flash",
    CurrentValue = false,
    Callback = function(Value)
@@ -116,7 +114,7 @@ local KeybindExample = Farm:CreateKeybind({
 
 local ParagraphCreator = Farm:CreateParagraph({
    Title = "Criador",
-   Content = "idk Hub by idk"
+   Content = "Aura Hub by Aura"
 })
 
 Rayfield:LoadConfiguration()
