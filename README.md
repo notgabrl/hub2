@@ -102,45 +102,27 @@ local ToggleEquipLoop = Tab:CreateToggle({
 
 local SectionBuy = Tab:CreateSection("Auto Buy Plants")
 
-local selectedPlants = {"Cactus"}
-
-local DropdownPlants = Tab:CreateDropdown({
-	Name = "Select Plants",
-	Description = nil,
-	Options = {"Cactus", "Strawberry", "Pumpkin", "Sunflower", "Dragon Fruit", "Watermelon", "Cocotank", "Carnivorous Plant", "Mr Carrot", "Chompy", "Peagris"},
-	CurrentOption = {"Cactus"},
-	MultipleOptions = true,
-	SpecialType = nil,
-	Callback = function(Options)
-		selectedPlants = Options
-	end
-}, "PlantDropdown")
-
-local buyLoopActive = false
-
-local ToggleAutoBuyPlants = Tab:CreateToggle({
-	Name = "Auto Buy Plants",
+local cactusLoopActive = false
+local ToggleAutoBuyCactus = Tab:CreateToggle({
+	Name = "Auto Buy Cactus",
 	Description = nil,
 	CurrentValue = false,
     	Callback = function(Value)
-         buyLoopActive = Value
+         cactusLoopActive = Value
          if Value then
          	spawn(function()
-         		while buyLoopActive do
-         			for _, plantName in ipairs(selectedPlants) do
-         				local args = {
-         					"purchaseSeed",
-         					plantName
-         				}
-         				game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
-         				wait(0.5)
-         			end
+         		while cactusLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Cactus"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
          			wait(5)
          		end
          	end)
          end
     	end
-}, "AutoBuyPlantsToggle")
+}, "AutoBuyCactus")
 
 local ButtonBuyCactus = Tab:CreateButton({
 	Name = "Buy Cactus",
@@ -166,6 +148,28 @@ local ButtonBuyStrawberry = Tab:CreateButton({
     	end
 }, "BuyStrawberry")
 
+local strawberryLoopActive = false
+local ToggleAutoBuyStrawberry = Tab:CreateToggle({
+	Name = "Auto Buy Strawberry",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         strawberryLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while strawberryLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Strawberry"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyStrawberry")
+
 local ButtonBuyPumpkin = Tab:CreateButton({
 	Name = "Buy Pumpkin",
 	Description = nil,
@@ -177,6 +181,28 @@ local ButtonBuyPumpkin = Tab:CreateButton({
          game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
 }, "BuyPumpkin")
+
+local pumpkinLoopActive = false
+local ToggleAutoBuyPumpkin = Tab:CreateToggle({
+	Name = "Auto Buy Pumpkin",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         pumpkinLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while pumpkinLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Pumpkin"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyPumpkin")
 
 local ButtonBuySunflower = Tab:CreateButton({
 	Name = "Buy Sunflower",
@@ -190,6 +216,28 @@ local ButtonBuySunflower = Tab:CreateButton({
     	end
 }, "BuySunflower")
 
+local sunflowerLoopActive = false
+local ToggleAutoBuySunflower = Tab:CreateToggle({
+	Name = "Auto Buy Sunflower",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         sunflowerLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while sunflowerLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Sunflower"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuySunflower")
+
 local ButtonBuyDragonFruit = Tab:CreateButton({
 	Name = "Buy Dragon Fruit",
 	Description = nil,
@@ -201,6 +249,28 @@ local ButtonBuyDragonFruit = Tab:CreateButton({
          game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
 }, "BuyDragonFruit")
+
+local dragonFruitLoopActive = false
+local ToggleAutoBuyDragonFruit = Tab:CreateToggle({
+	Name = "Auto Buy Dragon Fruit",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         dragonFruitLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while dragonFruitLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Dragon Fruit"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyDragonFruit")
 
 local ButtonBuyWatermelon = Tab:CreateButton({
 	Name = "Buy Watermelon",
@@ -214,6 +284,28 @@ local ButtonBuyWatermelon = Tab:CreateButton({
     	end
 }, "BuyWatermelon")
 
+local watermelonLoopActive = false
+local ToggleAutoBuyWatermelon = Tab:CreateToggle({
+	Name = "Auto Buy Watermelon",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         watermelonLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while watermelonLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Watermelon"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyWatermelon")
+
 local ButtonBuyCocotank = Tab:CreateButton({
 	Name = "Buy Cocotank",
 	Description = nil,
@@ -225,6 +317,28 @@ local ButtonBuyCocotank = Tab:CreateButton({
          game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
 }, "BuyCocotank")
+
+local cocotankLoopActive = false
+local ToggleAutoBuyCocotank = Tab:CreateToggle({
+	Name = "Auto Buy Cocotank",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         cocotankLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while cocotankLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Cocotank"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyCocotank")
 
 local ButtonBuyCarnivorousPlant = Tab:CreateButton({
 	Name = "Buy Carnivorous Plant",
@@ -238,6 +352,28 @@ local ButtonBuyCarnivorousPlant = Tab:CreateButton({
     	end
 }, "BuyCarnivorousPlant")
 
+local carnivorousPlantLoopActive = false
+local ToggleAutoBuyCarnivorousPlant = Tab:CreateToggle({
+	Name = "Auto Buy Carnivorous Plant",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         carnivorousPlantLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while carnivorousPlantLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Carnivorous Plant"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyCarnivorousPlant")
+
 local ButtonBuyMrCarrot = Tab:CreateButton({
 	Name = "Buy Mr Carrot",
 	Description = nil,
@@ -249,6 +385,28 @@ local ButtonBuyMrCarrot = Tab:CreateButton({
          game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
 }, "BuyMrCarrot")
+
+local mrCarrotLoopActive = false
+local ToggleAutoBuyMrCarrot = Tab:CreateToggle({
+	Name = "Auto Buy Mr Carrot",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         mrCarrotLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while mrCarrotLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Mr Carrot"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyMrCarrot")
 
 local ButtonBuyChompy = Tab:CreateButton({
 	Name = "Buy Chompy",
@@ -262,6 +420,28 @@ local ButtonBuyChompy = Tab:CreateButton({
     	end
 }, "BuyChompy")
 
+local chompyLoopActive = false
+local ToggleAutoBuyChompy = Tab:CreateToggle({
+	Name = "Auto Buy Chompy",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         chompyLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while chompyLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Chompy"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyChompy")
+
 local ButtonBuyPeagris = Tab:CreateButton({
 	Name = "Buy Peagris",
 	Description = nil,
@@ -273,6 +453,28 @@ local ButtonBuyPeagris = Tab:CreateButton({
          game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
 }, "BuyPeagris")
+
+local peagrisLoopActive = false
+local ToggleAutoBuyPeagris = Tab:CreateToggle({
+	Name = "Auto Buy Peagris",
+	Description = nil,
+	CurrentValue = false,
+    	Callback = function(Value)
+         peagrisLoopActive = Value
+         if Value then
+         	spawn(function()
+         		while peagrisLoopActive do
+         			local args = {
+         				"purchaseSeed",
+         				"Peagris"
+         			}
+         			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("SeedShop"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+         			wait(5)
+         		end
+         	end)
+         end
+    	end
+}, "AutoBuyPeagris")
 
 local TabFunctions = Window:CreateTab({
 	Name = "Functions",
