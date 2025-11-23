@@ -1,74 +1,81 @@
 local Luna = loadstring(game:HttpGet("https://raw.githubusercontent.com/Nebula-Softworks/Luna-Interface-Suite/refs/heads/main/source.lua", true))()
 
 local Window = Luna:CreateWindow({
-	Name = "BlackKing", -- This Is Title Of Your Window
-	Subtitle = nil, -- A Gray Subtitle next To the main title.
-	LogoID = "82795327169782", -- The Asset ID of your logo. Set to nil if you do not have a logo for Luna to use.
-	LoadingEnabled = true, -- Whether to enable the loading animation. Set to false if you do not want the loading screen or have your own custom one.
-	LoadingTitle = "Luna Interface Suite", -- Header for loading screen
-	LoadingSubtitle = "by Hland", -- Subtitle for loading screen
+	Name = "Idk Hub", -- Este é o título da sua janela
+	Subtitle = "by @notgabrl", -- Um subtítulo cinza ao lado do título principal.
+	LogoID = "82795327169782", -- O Asset ID do seu logo. Defina como nil se você não tiver um logo para o Luna usar.
+	LoadingEnabled = true, -- Se deve habilitar a animação de carregamento. Defina como false se você não quiser a tela de carregamento ou tiver uma personalizada.
+	LoadingTitle = "Luna Interface Suite", -- Cabeçalho da tela de carregamento
+	LoadingSubtitle = "by Hland", -- Subtítulo da tela de carregamento
 
 	ConfigSettings = {
-		RootFolder = nil, -- The Root Folder Is Only If You Have A Hub With Multiple Game Scripts and u may remove it. DO NOT ADD A SLASH
-		ConfigFolder = "Big Hub" -- The Name Of The Folder Where Luna Will Store Configs For This Script. DO NOT ADD A SLASH
+		RootFolder = nil, -- A pasta raiz é apenas se você tiver um hub com múltiplos scripts de jogos e você pode removê-la. NÃO ADICIONE UMA BARRA
+		ConfigFolder = "Big Hub" -- O nome da pasta onde o Luna armazenará as configurações para este script. NÃO ADICIONE UMA BARRA
 	},
 
-	KeySystem = true, -- As Of Beta 6, Luna Has officially Implemented A Key System!
+	KeySystem = false, -- A partir do Beta 6, o Luna implementou oficialmente um sistema de chaves!
 	KeySettings = {
 		Title = "Idk Example Key",
 		Subtitle = "Key System",
 		Note = "Just enter discord server to get the key",
-		SaveInRoot = false, -- Enabling will save the key in your RootFolder (YOU MUST HAVE ONE BEFORE ENABLING THIS OPTION)
-		SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
-		Key = {"idkhub"}, -- List of keys that will be accepted by the system, please use a system like Pelican or Luarmor that provide key strings based on your HWID since putting a simple string is very easy to bypass
+		SaveInRoot = false, -- Habilitar salvará a chave na sua RootFolder (VOCÊ DEVE TER UMA ANTES DE HABILITAR ESTA OPÇÃO)
+		SaveKey = true, -- A chave do usuário será salva, mas se você mudar a chave, eles não conseguirão usar seu script
+		Key = {"idkhub"}, -- Lista de chaves que serão aceitas pelo sistema, por favor use um sistema como Pelican ou Luarmor que fornecem strings de chave baseadas no seu HWID, já que colocar uma string simples é muito fácil de contornar
 		SecondAction = {
-			Enabled = true, -- Set to false if you do not want a second action,
+			Enabled = true, -- Defina como false se você não quiser uma segunda ação,
 			Type = "Link", -- Link / Discord.
-			Parameter = "" -- If Type is Discord, then put your invite link (DO NOT PUT DISCORD.GG/). Else, put the full link of your key system here.
+			Parameter = "" -- Se Type for Discord, então coloque seu link de convite (NÃO COLOQUE DISCORD.GG/). Caso contrário, coloque o link completo do seu sistema de chaves aqui.
 		}
 	}
 })
 local Tab = Window:CreateTab({
-	Name = "Tab Example",
+	Name = "Auto ...",
 	Icon = "view_in_ar",
 	ImageSource = "Material",
-	ShowTitle = true -- This will determine whether the big header text in the tab will show
+	ShowTitle = true -- Isso determinará se o texto do cabeçalho grande na aba será mostrado
 })
 Window:CreateHomeTab({
-	SupportedExecutors = {}, -- A Table Of Executors Your Script Supports. Add strings of the executor names for each executor.
-	DiscordInvite = "1234", -- The Discord Invite Link. Do Not Include discord.gg/ | Only Include the code.
-	Icon = 2, -- By Default, The Icon Is The Home Icon. If You would like to change it to dashboard, replace the interger with 2
+	SupportedExecutors = {}, -- Uma tabela de executores que seu script suporta. Adicione strings dos nomes dos executores para cada executor.
+	DiscordInvite = "1234", -- O link de convite do Discord. Não inclua discord.gg/ | Apenas inclua o código.
+	Icon = 2, -- Por padrão, o ícone é o ícone Home. Se você quiser mudá-lo para dashboard, substitua o inteiro por 2
 })
 local Paragraph = Tab:CreateParagraph({
 	Title = "info",
-	Text = "idk how to change icon"
+	Text = "here you can automatically sell, buy, equip, etc.."
 })
-local Button = Tab:CreateButton({
-	Name = "Button Example!",
-	Description = nil, -- Creates A Description For Users to know what the button does (looks bad if you use it all the time),
+local ButtonSellAllNPCs = Tab:CreateButton({
+	Name = "Sell All NPCs",
+	Description = nil,
     	Callback = function()
-         -- The function that takes place when the button is pressed
+         local args = {
+         	"sellAllNPCs"
+         }
+         game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("Sell"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
-})
-local ColorPicker = Tab:CreateColorPicker({
-	Name = "Color Picker Example",
-	Color = Color3.fromRGB(86, 171, 128),
-	Flag = "ColorPicker1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-	Callback = function(Value)
-		-- The function that takes place every time the color picker is moved/changed
-		-- The variable (Value) is a Color3fromRGB value based on which color is selected
-	end
-}, "ColorPicker") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-local Slider = Tab:CreateSlider({
-	Name = "Slider Example",
-	Range = {0, 200}, -- The Minimum And Maximum Values Respectively
-	Increment = 5, -- Basically The Changing Value/Rounding Off
-	CurrentValue = 100, -- The Starting Value
-    	Callback = function(Value)
-       	 -- The function that takes place when the slider changes
-       	 -- The variable (Value) is a number which correlates to the value the slider is currently at
+}, "SellAllNPCs")
+
+local ButtonSellAllPlants = Tab:CreateButton({
+	Name = "Sell All Plants",
+	Description = nil,
+    	Callback = function()
+         local args = {
+         	"sellAllPlants"
+         }
+         game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("Sell"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
     	end
-}, "Slider") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+}, "SellAllPlants")
+
+local ButtonSellHand = Tab:CreateButton({
+	Name = "Sell Hand",
+	Description = nil,
+    	Callback = function()
+         local args = {
+         	"sellHoldingItem",
+         	Instance.new("Tool", nil)
+         }
+         game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("Sell"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+    	end
+}, "SellHand")
 local Dropdown = Tab:CreateDropdown({
 	Name = "Dropdown Example",
     	Description = nil,
@@ -77,35 +84,35 @@ local Dropdown = Tab:CreateDropdown({
     	MultipleOptions = false,
     	SpecialType = nil,
     	Callback = function(Options)
-     	 -- The function that takes place when the selected option is changed
-    	 -- If MultipleOptions is true then The variable (Options) is a table of strings for the current selected options. Else, it is a string of the currentoption
+     	 -- A função que acontece quando a opção selecionada é alterada
+    	 -- Se MultipleOptions for true, então a variável (Options) é uma tabela de strings para as opções selecionadas atualmente. Caso contrário, é uma string da opção atual
 	end
-}, "Dropdown") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+}, "Dropdown") -- Uma flag é o identificador para o arquivo de configuração, certifique-se de que cada elemento tenha uma flag diferente se você estiver usando salvamento de configuração para garantir que não haja sobreposições
 local Toggle = Tab:CreateToggle({
 	Name = "Toggle Example",
 	Description = nil,
 	CurrentValue = false,
     	Callback = function(Value)
-       	 -- The function that takes place when the toggle is switched
-       	 -- The variable (Value) is a boolean on whether the toggle is true or false
+       	 -- A função que acontece quando o toggle é alternado
+       	 -- A variável (Value) é um booleano indicando se o toggle está true ou false
     	end
-}, "Toggle") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+}, "Toggle") -- Uma flag é o identificador para o arquivo de configuração, certifique-se de que cada elemento tenha uma flag diferente se você estiver usando salvamento de configuração para garantir que não haja sobreposições
 local Bind = Tab:CreateBind({
 	Name = "Bind Example",
 	Description = nil,
-	CurrentBind = "Q", -- Check Roblox Studio Docs For KeyCode Names
-	HoldToInteract = false, -- When true, Instead of toggling, You hold to achieve the active state of the Bind
+	CurrentBind = "Q", -- Verifique a documentação do Roblox Studio para nomes de KeyCode
+	HoldToInteract = false, -- Quando true, ao invés de alternar, você segura para alcançar o estado ativo do Bind
     	Callback = function(BindState)
-     	 -- The function that takes place when the keybind is pressed
-     	 -- The variable (BindState) is a boolean for whether the Bind is being held or not (HoldToInteract needs to be true) OR it is whether the Bind is active
+     	 -- A função que acontece quando a tecla de atalho é pressionada
+     	 -- A variável (BindState) é um booleano indicando se o Bind está sendo segurado ou não (HoldToInteract precisa ser true) OU é se o Bind está ativo
     	end,
 
 	OnChangedCallback = function(Bind)
-	 -- The function that takes place when the binded key changes
-	 -- The variable (Bind) is a Enum.KeyCode for the new Binded Key
+	 -- A função que acontece quando a tecla vinculada muda
+	 -- A variável (Bind) é um Enum.KeyCode para a nova tecla vinculada
 	end,
-}, "Bind") -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+}, "Bind") -- Uma flag é o identificador para o arquivo de configuração, certifique-se de que cada elemento tenha uma flag diferente se você estiver usando salvamento de configuração para garantir que não haja sobreposições
 local Label = Tab:CreateLabel({
 	Text = "Label Example",
-	Style = 2 -- Luna Labels Have 3 Styles : A Basic Label, A Green Information Label and A Red Warning Label. Look At The Following Image For More Details
+	Style = 2 -- Os Labels do Luna têm 3 estilos: Um Label básico, Um Label de informação verde e Um Label de aviso vermelho. Veja a imagem a seguir para mais detalhes
 })
