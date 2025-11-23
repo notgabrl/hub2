@@ -77,7 +77,6 @@ local ButtonEquipBestNPCs = Tab:CreateButton({
 }, "EquipBestNPCs")
 
 local equipLoopActive = false
-local equipLoopConnection = nil
 
 local ToggleEquipLoop = Tab:CreateToggle({
 	Name = "Auto Equip Best NPCs",
@@ -86,20 +85,15 @@ local ToggleEquipLoop = Tab:CreateToggle({
     	Callback = function(Value)
          equipLoopActive = Value
          if Value then
-         	equipLoopConnection = task.spawn(function()
+         	spawn(function()
          		while equipLoopActive do
          			local args = {
          				"equipBestNPCs"
          			}
          			game:GetService("ReplicatedStorage"):WaitForChild("Packages"):WaitForChild("Networker"):WaitForChild("leifstout_networker@0.3.0"):WaitForChild("networker"):WaitForChild("_remotes"):WaitForChild("EquipBest"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
-         			task.wait(5)
+         			wait(5)
          		end
          	end)
-         else
-         	if equipLoopConnection then
-         		task.cancel(equipLoopConnection)
-         		equipLoopConnection = nil
-         	end
          end
     	end
 }, "AutoEquipLoop")
